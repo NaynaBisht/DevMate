@@ -50,7 +50,7 @@ export const login = async (req, res) => {
         }
         let user = await User.findOne({email})
         if(!user){
-            return register.status(400).json({
+            return res.status(400).json({
                 message : "Incorrect email or password.",
                 success: false
             })
