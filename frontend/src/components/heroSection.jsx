@@ -12,8 +12,7 @@ function heroSection() {
         </span>
 
         <h1 className=" text-5xl font-bold">
-          Search, Apply & <br /> Get Your
-          <span className=" text-[#6A38C2] ">Dream Job</span>
+          Search, Apply & <br /> Get Your <span className=" text-[#6A38C2]"> Dream Job</span>
         </h1>
         <p>
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus
