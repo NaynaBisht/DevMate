@@ -10,7 +10,7 @@ import { Label } from "../ui/label.jsx";
 import { Input } from "../ui/input.jsx";
 import { RadioGroup } from "../ui/radio-group.jsx";
 import { toast } from "sonner";
-import { setLoading } from "@/redux/authSlice.js";
+import { setLoading, setUser } from "@/redux/authSlice.js";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { Loader2 } from "lucide-react";
@@ -48,6 +48,7 @@ const Login = () => {
       });
 
       if (res.data.success) {
+        dispatch(setUser(res.data.user));
         navigate("/");
         toast.success(res.data.message);
       }
