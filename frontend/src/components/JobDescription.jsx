@@ -6,7 +6,7 @@ const JobDescription = () => {
   const isApplied = true;
   return (
     <div className="max-w-5xl mx-auto my-10">
-      <div className="flex itexms-center justify-between">
+      <div className="flex itexms-center justify -between">
         <div>
           <h1 className="font-bold text-xl">Frontend Developer</h1>
           <div className="flex gap-2 items-center mt-4">
