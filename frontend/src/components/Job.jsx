@@ -6,7 +6,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import image from "../assets/images/circle-line-simple-design-logo-600nw-2174926871.webp";
 import { useNavigate } from "react-router-dom";
 
-const Job = () => {
+const Job = ({job}) => {
   const navigate = useNavigate();
   const jobId = "1234";
   return (
@@ -31,32 +31,32 @@ const Job = () => {
           </AvatarFallback>
         </Avatar>
         <div>
-          <h1 className="font-bold">Company Name</h1>
-          <p>India</p>
+          <h1 className="font-bold">{ job?.company?.name }</h1>
+          <p>{ job?.location }</p>
         </div>
       </div>
 
       <div className="font-bold text-lg my-2">
-        <h1>Title</h1>
+        <h1>{ job?.title }</h1>
         <p className="text-sm text-gray-600">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit
+        { job?.description}
         </p>
       </div>
 
       <div className="flex gap-2 items-center mt-4">
         <Badge className="text-blue-700 font-bold" variant="ghost">
-          12 Positions
+          { job?.position }
         </Badge>
         <Badge className="text-red-700 font-bold" variant="ghost">
-          Part Time
+        { job?.jobType }
         </Badge>
         <Badge className="text-purple-700 font-bold" variant="ghost">
-          24LPA
+        { job?.salary }
         </Badge>
       </div>
 
       <div className="flex items-center gap-4 mt-4">
-        <Button onClick = {() => navigate(`/description/${jobId}`)} variant="outline">Details</Button>
+        <Button onClick = {() => navigate(`/description/${job?._id}`)} variant="outline">Details</Button>
         <Button className="bg-purple-700 text-white">Save For Later</Button>
       </div>
     </div>
