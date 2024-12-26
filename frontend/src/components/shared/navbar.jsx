@@ -63,7 +63,7 @@ function navbar() {
               <PopoverTrigger asChild>
                 <Avatar className="cursor-pointer">
                   <AvatarImage
-                    src="https://github.com/shadcn.png"
+                    src={user?.profile?.profilePhoto}
                     alt="@shadcn"
                   />
                 </Avatar>
@@ -73,14 +73,14 @@ function navbar() {
                 <div className="flex items-center gap-3">
                   <Avatar Avatar className="cursor-pointer">
                     <AvatarImage
-                      src="https://github.com/shadcn.png"
+                      src= {user?.profile?.profilePhoto}
                       alt="@shadcn"
                     />
                   </Avatar>
                   <div>
-                    <h4 className="font-medium"> Nayna Bisht </h4>
+                    <h4 className="font-medium"> {user?.fullname} </h4>
                     <p className="text-sm text-gray-500 ">
-                      Lorem ipsum dolor sit amet.
+                      {user?.profile?.bio}
                     </p>
                   </div>
                 </div>
