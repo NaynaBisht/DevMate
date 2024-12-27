@@ -4,15 +4,23 @@ import { Bookmark } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import image from "../assets/images/circle-line-simple-design-logo-600nw-2174926871.webp";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; 
+
 
 const Job = ({job}) => {
   const navigate = useNavigate();
-  const jobId = "1234";
+
+  const daysAgo = (mongodbTime) => {
+    const createdAt = new Date(mongodbTime);
+    const currentTime = new Date();
+    const difference = currentTime - createdAt;
+    return Math.floor(difference / (1000 * 60 * 60 * 24));
+  }
+
   return (
     <div className="p-5 rounded-md shadow-xl bg-white border border-gray-100">
       <div className="flex items-center justify-between">
-        <p>2 days ago</p>
+        <p> {daysAgo(job?.createdAt)=== 0 ? "Today" : `${daysAgo(job?.createdAt)}days ago` } </p>
         <Button variant="outline" className="rounded-full" size="icon">
           <Bookmark />
         </Button>
