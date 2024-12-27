@@ -48,15 +48,29 @@ function navbar() {
 
         <div className="flex items-center gap-9">
           <ul className="flex font-medium items-center gap-5">
-            <li> <Link to="/" >Home</Link> </li>
-            <li> <Link to="/jobs" >Jobs</Link> </li>
-            <li> <Link to="/browse">Browse </Link> </li>
+
+            {
+              user && user.role === "recruiter" ? (
+                <>
+                  <li> <Link to="/admin/companies" >Companies</Link> </li>
+                  <li> <Link to="/admin/jobs" >Jobs</Link> </li>
+                </>
+              ):
+              (
+                <>
+                  <li> <Link to="/" >Home</Link> </li>
+                  <li> <Link to="/jobs" >Jobs</Link> </li>
+                  <li> <Link to="/browse">Browse </Link> </li>
+                </>
+              )
+            }
+            
           </ul>
 
           {!user ? (
             <div className="flex items-center gap-2">
               <Link to="/login" ><Button variant="outline">Login</Button></Link>
-              <Link to="/signup" ><Button className="bg-[#6A38C2] hover:bg-[#4e2693] text-white  " >SignUp</Button></Link>
+              <Link to="/signup" ><Button className="bg-[#6A38C2] hover:bg-[#4e2693] text-white " >SignUp</Button></Link>
             </div>
           ) : (
             <Popover>
@@ -85,10 +99,15 @@ function navbar() {
                   </div>
                 </div>
                 <div className="flex flex-col my-2 text-gray-600">
-                  <div className="flex w-fit items-center gap-2 cursor-pointer">
-                    <User2 />
-                    <Button variant="link"> <Link to="/profile">View Profile</Link> </Button>
-                  </div>
+                  
+                  {
+                    user && user.role === "student" && (
+                      <div className="flex w-fit items-center gap-2 cursor-pointer">
+                        <User2 />
+                        <Button variant="link"> <Link to="/profile">View Profile</Link> </Button>
+                      </div> 
+                    )
+                  }
 
                   <div className="flex w-fit items-center gap-2 cursor-pointer">
                     <LogOut />
