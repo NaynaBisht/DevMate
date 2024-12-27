@@ -2,7 +2,6 @@ import React from "react";
 import Navbar from "./shared/navbar.jsx";
 import FilterCard from "./FilterCard.jsx";
 import Job from "./Job.jsx";
-import { SpaceIcon } from "lucide-react";
 import { useSelector } from "react-redux";
 import store from "@/redux/store.js";
 
