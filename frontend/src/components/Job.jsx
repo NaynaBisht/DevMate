@@ -3,7 +3,6 @@ import { Button } from "./ui/button";
 import { Bookmark } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
-import image from "../assets/images/circle-line-simple-design-logo-600nw-2174926871.webp";
 import { useNavigate } from "react-router-dom"; 
 
 
@@ -30,7 +29,7 @@ const Job = ({job}) => {
         {/* Avatar outside Button */}
         <Avatar className="w-12 h-12">
           <AvatarImage
-            src={image}
+            src={job?.company?.logo}
             alt="Company Logo"
             className="w-full h-full object-contain"
           />
