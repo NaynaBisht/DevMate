@@ -39,10 +39,7 @@ const jobSchema = new mongoose.Schema({
         ref: 'Company',
         required: true,
     },
-    createdBy:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-    },
+    createdAt: { type: Date, default: Date.now },
     applications:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Application',
