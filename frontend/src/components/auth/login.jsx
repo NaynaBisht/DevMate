@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import axios from "axios";
 import { USER_API_END_POINT } from "../../utils/constant.js";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +22,7 @@ const Login = () => {
     role: "",
   });
 
-  const { loading } = useSelector((store) => store.auth);
+  const { loading, user } = useSelector((store) => store.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -59,6 +59,12 @@ const Login = () => {
       dispatch(setLoading(false));
     }
   };
+
+  useEffect(() => {
+    if(user){
+      navigate('/')
+    }
+  });
 
   return (
     <div>
