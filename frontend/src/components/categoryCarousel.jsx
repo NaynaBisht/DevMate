@@ -7,31 +7,46 @@ import {
   CarouselPrevious,
 } from "./ui/carousel";
 import { Button } from "./ui/button";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setSearchedQuery } from "@/redux/jobSlice";
+import { ArrowLeftCircleIcon, ArrowRightCircleIcon } from "lucide-react";
 
 const category = [
   "Frontend Developer",
   "Backend Developer",
-  "Fullstack Developer",
-  "React Developer",
-  "DevOps Engineer",
-  "Data Scientist",
-  "Machine Learning Engineer",
+  "Data Science",
+  "Machine Learning",
+  "Software Developer",
+  "Full Stack Developer"
 ];
 
 const CategoryCarousel = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const searchJobHandler = (query) => {
+    dispatch(setSearchedQuery(query));
+    navigate("/browse");
+  };
+
   return (
-    <div className="relative w-full flex justify-center items-center py-10">
-      <Carousel className="w-full max-w-4xl">
-        {/* Carousel Content */}
-        <CarouselContent className="flex justify-center items-center gap-4">
+    <div className="relative w-1/2 max-w-xl mx-auto my-20">
+      <Carousel>
+        {/* Left Arrow */}
+        <CarouselPrevious className="absolute left-[-40px] top-1/2 transform -translate-y-1/2">
+          <ArrowLeftCircleIcon size={32} className="cursor-pointer" />
+        </CarouselPrevious>
+
+        <CarouselContent>
           {category.map((cat, index) => (
             <CarouselItem
               key={index}
-              className="flex-shrink-0 w-full sm:w-auto md:basis-1/2 lg:basis-1/3 text-center"
+              className="md:basis-1/2 lg-basis-1/3 text-center"
             >
               <Button
                 variant="outline"
-                className="w-full sm:w-auto px-6 py-3 rounded-full"
+                onClick={() => searchJobHandler(cat)}
+                className="rounded-full"
               >
                 {cat}
               </Button>
@@ -39,14 +54,9 @@ const CategoryCarousel = () => {
           ))}
         </CarouselContent>
 
-        {/* Previous Button */}
-        <CarouselPrevious className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-gray-800 text-white p-2 rounded-full shadow-lg">
-          &#9664; {/* Left Arrow */}
-        </CarouselPrevious>
-
-        {/* Next Button */}
-        <CarouselNext className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-gray-800 text-white p-2 rounded-full shadow-lg">
-          &#9654; {/* Right Arrow */}
+        {/* Right Arrow */}
+        <CarouselNext className="absolute right-[-40px] top-1/2 transform -translate-y-1/2">
+          <ArrowRightCircleIcon size={32} className="cursor-pointer" />
         </CarouselNext>
       </Carousel>
     </div>

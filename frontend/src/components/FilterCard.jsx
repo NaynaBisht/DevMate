@@ -1,37 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { RadioGroup, RadioGroupItem } from './ui/radio-group';
 import { Label } from '@radix-ui/react-label';
+import { useDispatch } from 'react-redux';
+import { setSearchedQuery } from '@/redux/jobSlice';
 
 const filterData = [
   {
-    filterType : "Location",
-    array: ["Delhi", "Pune", "Hyderabad"]
+    filterType: "Location",
+    array: ["Delhi", "Pune", "Hyderabad", "San Francisco", "New York"],
   },
   {
-    filterType : "Industry",
-    array: ["IT", "Finance", "Marketing"]
+    filterType: "Industry",
+    array: ["FullStack Developer", "Backend Developer", "Software Engineer", "AI", "Frontend Developer"],
   },
   {
-    filterType : "Salary",
-    array: ["10LPA", "20LPA", "30LPA"]
-  }
-]
+    filterType: "Salary",
+    array: ["10LPA", "20LPA", "30LPA", "70,000", "80,000", "348,000"],
+  },
+  {
+    filterType: "Job Type",
+    array: ["Full-Time", "Part-Time"],
+  },
+];
+
 const FilterCard = () => {
+  const [selectedValue, setSelectedValue] = useState('')
+  const dispatch = useDispatch();
+
+  const changeHandler = (value)=>{
+    setSelectedValue(value)
+  }
+  useEffect(() => {
+    dispatch(setSearchedQuery(selectedValue))
+  },[selectedValue])
+
   return (
     <div className='w-full bg-white p-3 rounded-md ' >
       <h1 className='font-bold text-lg '>Filter Jobs</h1>
       <hr className='mt-3' />
-      <RadioGroup>
+      <RadioGroup  onValueChange = {changeHandler} value={selectedValue}>
         {
           filterData.map((data, index) => (
             <div>
               <h1 className='font-bold text-lg' > {data.filterType} </h1>
               {
-                data.array.map((item, index) => {
+                data.array.map((item, idx) => {
+                  const itemId = `r${index}-${idx}`
                   return (
                     <div className='items-center flex space-x-2 my-2  ' >
-                      <RadioGroupItem value={item}/>
-                      <Label>{item}</Label>
+                      <RadioGroupItem className="border border-black" value={item} id={itemId} />
+                      <Label htmlFor={itemId} >{item}</Label>
                     </div>
                   )
                 })
