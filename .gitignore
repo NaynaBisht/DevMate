@@ -62,6 +62,7 @@ dist/
 /frontend/node_modules/
 /frontend/dist/
 /frontend/src/utils/constant.js
+constant.js
 /frontend/.env*
 
 # Backend specific files

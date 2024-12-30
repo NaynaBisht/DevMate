@@ -11,7 +11,9 @@ node_modules
 dist
 dist-ssr
 *.local
-frontend/src/utils/constant.js
+/frontend/src/utils/constant.js
+/constant.js
+
 
 # Editor directories and files
 .vscode/*
