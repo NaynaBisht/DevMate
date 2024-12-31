@@ -18,6 +18,7 @@ import { JOB_API_END_POINT } from "@/utils/constant";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react";
+import Footer from "../shared/Footer";
 
 const companyArray = [];
 const PostJob = () => {
@@ -53,33 +54,36 @@ const PostJob = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-        setLoading(true);
-        const res = await axios.post(`${JOB_API_END_POINT}/post`, input, {
-            headers:{
-                'Content-Type': 'application/json',
-            },
-            withCredentials: true, 
-        })
-        if(res.data.success){
-            toast.success(res.data.message);
-            navigate('/admin/jobs')
-        }
+      setLoading(true);
+      const res = await axios.post(`${JOB_API_END_POINT}/post`, input, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      });
+      if (res.data.success) {
+        toast.success(res.data.message);
+        navigate("/admin/jobs");
+      }
     } catch (error) {
-        toast.error(error?.response?.data?.message);
-    } finally{
-        setLoading(false);
+      toast.error(error?.response?.data?.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div>
       <Navbar />
-      <div className="flex items-center justify-center w-screen my-5 ">
+      <div className="flex items-center justify-center w-screen my-5">
         <form
           onSubmit={submitHandler}
-          className=" p-8 max-w-4xl border border-gray-200 shadow-lg rounded-md "
+          className="w-full max-w-3xl border border-teal-400 shadow-lg rounded-lg bg-teal-50 p-8"
         >
-          <div className="grid grid-cols-2 gap-2">
+          <h1 className="font-bold text-3xl mb-5 text-orange-600 text-center">
+            Post a New Job
+          </h1>
+          <div className="grid grid-cols-2 gap-4">
             <div>
               <Label>Title</Label>
               <Input
@@ -87,7 +91,8 @@ const PostJob = () => {
                 name="title"
                 value={input.title}
                 onChange={changeEventHandler}
-                className="focus-visible: ring-offset-0 focus-visible:ring-0 my-1 "
+                placeholder="Enter job title"
+                className="border-teal-400 focus:ring-teal-500 focus:border-teal-500 my-1"
               />
             </div>
             <div>
@@ -97,7 +102,8 @@ const PostJob = () => {
                 name="description"
                 value={input.description}
                 onChange={changeEventHandler}
-                className="focus-visible: ring-offset-0 focus-visible:ring-0 my-1 "
+                placeholder="Enter job description"
+                className="border-teal-400 focus:ring-teal-500 focus:border-teal-500 my-1"
               />
             </div>
             <div>
@@ -107,7 +113,8 @@ const PostJob = () => {
                 name="requirements"
                 value={input.requirements}
                 onChange={changeEventHandler}
-                className="focus-visible: ring-offset-0 focus-visible:ring-0 my-1 "
+                placeholder="Enter job requirements"
+                className="border-teal-400 focus:ring-teal-500 focus:border-teal-500 my-1"
               />
             </div>
             <div>
@@ -117,7 +124,8 @@ const PostJob = () => {
                 name="salary"
                 value={input.salary}
                 onChange={changeEventHandler}
-                className="focus-visible: ring-offset-0 focus-visible:ring-0 my-1 "
+                placeholder="Enter salary"
+                className="border-teal-400 focus:ring-teal-500 focus:border-teal-500 my-1"
               />
             </div>
             <div>
@@ -127,7 +135,8 @@ const PostJob = () => {
                 name="location"
                 value={input.location}
                 onChange={changeEventHandler}
-                className="focus-visible: ring-offset-0 focus-visible:ring-0 my-1 "
+                placeholder="Enter job location"
+                className="border-teal-400 focus:ring-teal-500 focus:border-teal-500 my-1"
               />
             </div>
             <div>
@@ -137,7 +146,8 @@ const PostJob = () => {
                 name="jobType"
                 value={input.jobType}
                 onChange={changeEventHandler}
-                className="focus-visible: ring-offset-0 focus-visible:ring-0 my-1 "
+                placeholder="Enter job type (e.g., Full-time)"
+                className="border-teal-400 focus:ring-teal-500 focus:border-teal-500 my-1"
               />
             </div>
             <div>
@@ -147,45 +157,55 @@ const PostJob = () => {
                 name="experienceLevel"
                 value={input.experienceLevel}
                 onChange={changeEventHandler}
-                className="focus-visible: ring-offset-0 focus-visible:ring-0 my-1 "
+                placeholder="Enter experience level"
+                className="border-teal-400 focus:ring-teal-500 focus:border-teal-500 my-1"
               />
             </div>
             <div>
-              <Label>No Of Positions</Label>
+              <Label>No of Positions</Label>
               <Input
                 type="number"
                 name="position"
                 value={input.position}
                 onChange={changeEventHandler}
-                className="focus-visible: ring-offset-0 focus-visible:ring-0 my-1 "
+                placeholder="Enter number of positions"
+                className="border-teal-400 focus:ring-teal-500 focus:border-teal-500 my-1"
               />
             </div>
             {companies.length > 0 && (
-              <Select onValueChange={selectChangeHandler}>
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Select a Company" />
-                </SelectTrigger>
-                <SelectContent className="bg-white">
-                  <SelectGroup>
-                    {companies.map((company) => {
-                      return (
-                        <SelectItem className="cursor-pointer" value={company?.name?.toLowerCase()}>
-                          {" "}
-                          {company.name}{" "}
+              <div className="col-span-2">
+                <Label>Select a Company</Label>
+                <Select onValueChange={selectChangeHandler}>
+                  <SelectTrigger className="w-full border-teal-400 focus:ring-teal-500 focus:border-teal-500">
+                    <SelectValue placeholder="Select a Company" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white">
+                    <SelectGroup>
+                      {companies.map((company) => (
+                        <SelectItem
+                          key={company?.name}
+                          className="cursor-pointer"
+                          value={company?.name?.toLowerCase()}
+                        >
+                          {company.name}
                         </SelectItem>
-                      );
-                    })}
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
+                      ))}
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              </div>
             )}
           </div>
+
           {loading ? (
-            <Button className="w-full my-4">
-              <Loader2 className=" mr-2 h-4 w-4 animate-spin " /> Please Wait...
+            <Button className="w-full my-4 bg-teal-500 text-white">
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Posting Job...
             </Button>
           ) : (
-            <Button type="submit" className="w-full bg-black my-4 text-white">
+            <Button
+              type="submit"
+              className="w-full my-4 bg-orange-500 hover:bg-orange-600 text-white"
+            >
               Post New Job
             </Button>
           )}
@@ -196,6 +216,7 @@ const PostJob = () => {
           )}
         </form>
       </div>
+      <Footer />
     </div>
   );
 };
