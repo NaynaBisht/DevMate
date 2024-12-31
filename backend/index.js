@@ -7,6 +7,9 @@ import userRoutes from "./routes/user.route.js";
 import companyRoutes from "./routes/company.route.js";
 import jobRoutes from "./routes/job.route.js";
 import applicationRoutes from "./routes/application.route.js";  
+import path from "path";
+
+
 dotenv.config({});
 
 const app = express();
@@ -25,6 +28,7 @@ app.use(cors(corsOptions));
 
 const PORT = process.env.PORT || 3000;
 
+const _dirname = path.resolve();
 
 // apis
 
@@ -36,6 +40,11 @@ app.use("/api/v1/application", applicationRoutes);
 // "http://localhost:8000/api/v1/user/register"
 // "http://localhost:8000/api/v1/user/login"
 // "http://localhost:8000/api/v1/user/updateProfile"
+
+app.use(express.static(path.join(_dirname, "/frontend/dist")));
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(_dirname, "frontend", "dist", "index.html"));
+})
 
 
 app.listen(PORT, ()=>{
