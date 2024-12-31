@@ -38,50 +38,79 @@ const AdminJobsTable = () => {
     setFilterJobs(filteredJobs);
   }, [allAdminJobs, searchJobByText]);
   return (
-    <div>
+    <div className="p-6 bg-white shadow-lg rounded-xl max-w-5xl mx-auto">
       <Table>
-        <TableCaption>A list of your recent posted Jobs</TableCaption>
-        <TableHeader>
+        <TableCaption className="text-xl font-semibold text-orange-700 mb-4">
+          A list of your recent posted Jobs
+        </TableCaption>
+        <TableHeader className="border-b-2 border-gray-300">
           <TableRow>
-            <TableHead>Company Name</TableHead>
-            <TableHead>Role</TableHead>
-            <TableHead>Date</TableHead>
-            <TableHead className="text-right">Action</TableHead>
+            <TableHead className="text-orange-700 text-xl font-bold">
+              Company Name
+            </TableHead>
+            <TableHead className="text-orange-700 text-xl font-bold">
+              Role
+            </TableHead>
+            <TableHead className="text-orange-700 text-xl font-bold">
+              Date
+            </TableHead>
+            <TableHead className="text-orange-700 text-xl font-bold text-right">
+              Action
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {filterJobs?.map((job) => (
+          {filterJobs?.length <= 0 ? (
             <tr>
-              <TableCell>{job?.company?.name}</TableCell>
-              <TableCell>{job?.title}</TableCell>
-              <TableCell> {job?.createdAt.split("T")[0]} </TableCell>
-              <TableCell className="text-right cursor-pointer">
-                <Popover>
-                  <PopoverTrigger>
-                    <MoreHorizontal />
-                  </PopoverTrigger>
-                  <PopoverContent className="w-32 bg-white ">
-                    <div
-                      onClick={() => navigate(`/admin/companies/${job._id}`)}
-                      className="flex items-center gap-2 w-fit cursor-pointer "
-                    >
-                      <Edit2 className="w-4" />
-                      <span>Edit</span>
-                    </div>
-                    <div
-                      className="flex items-center w-fit gap-2 cursor-pointer mt-2 "
-                      onClick={() =>
-                        navigate(`/admin/jobs/${job._id}/applicants`)
-                      }
-                    >
-                      <Eye className="w-4" />
-                      <span>Applicants</span>
-                    </div>
-                  </PopoverContent>
-                </Popover>
-              </TableCell>
+              <td colSpan="4" className="text-center py-4 text-gray-500">
+                No jobs posted yet
+              </td>
             </tr>
-          ))}
+          ) : (
+            filterJobs?.map((job) => (
+              <TableRow
+                key={job._id}
+                className="hover:bg-teal-50 transition duration-200"
+              >
+                <TableCell className="text-black text-lg">
+                  {job?.company?.name}
+                </TableCell>
+                <TableCell className="text-black text-lg">
+                  {job?.title}
+                </TableCell>
+                <TableCell className="text-black text-lg">
+                  {job?.createdAt.split("T")[0]}
+                </TableCell>
+                <TableCell className="text-right">
+                  <Popover>
+                    <PopoverTrigger>
+                      <MoreHorizontal className="text-teal-600 hover:text-teal-800 transition-colors duration-200" />
+                    </PopoverTrigger>
+                    <PopoverContent className="w-36 bg-white shadow-lg rounded-md border border-gray-200">
+                      <div
+                        onClick={() => navigate(`/admin/jobs/create`)}
+                        className="flex items-center gap-2 w-fit cursor-pointer p-2 hover:bg-teal-50 rounded-md transition-colors duration-200"
+                      >
+                        <Edit2 className="w-4 text-teal-600" />
+                        <span className="text-teal-700 font-medium">Edit</span>
+                      </div>
+                      <div
+                        onClick={() =>
+                          navigate(`/admin/jobs/${job._id}/applicants`)
+                        }
+                        className="flex items-center gap-2 w-fit cursor-pointer p-2 hover:bg-teal-50 rounded-md transition-colors duration-200"
+                      >
+                        <Eye className="w-4 text-teal-600" />
+                        <span className="text-teal-700 font-medium">
+                          Applicants
+                        </span>
+                      </div>
+                    </PopoverContent>
+                  </Popover>
+                </TableCell>
+              </TableRow>
+            ))
+          )}
         </TableBody>
       </Table>
     </div>

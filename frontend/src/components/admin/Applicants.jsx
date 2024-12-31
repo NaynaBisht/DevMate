@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setAllApplicants } from '@/redux/applicationSlice';
 import axios from 'axios';
 import store from '@/redux/store';
+import Footer from '../shared/Footer';
 
 const Applicants = () => {
     const params = useParams();
@@ -32,6 +33,7 @@ const Applicants = () => {
         <h1 className='font-bold my-5 text-xl ' >Applicants {applicants?.applications?.length} </h1>
         <ApplicantsTable/>
       </div>
+      <Footer/>
     </div>
   );
 }
