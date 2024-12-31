@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import store from "@/redux/store.js";
 import { setSearchedQuery } from "@/redux/jobSlice.js";
 import {motion} from 'framer-motion';
+import Footer from "./shared/Footer.jsx";
 
 const jobsArray = [1, 2, 3, 4, 5, 6, 7, 8];
 const Jobs = () => {
@@ -30,7 +31,7 @@ const Jobs = () => {
     <div>
       <Navbar />
 
-      <div className="max-w-5xl mx-auto mt-5">
+      <div className="max-w-5xl mx-auto mt-12 mb-12 ">
         <div className="flex gap-5">
           <div className="w-[15%]">
             <FilterCard />
@@ -58,6 +59,7 @@ const Jobs = () => {
           )}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
