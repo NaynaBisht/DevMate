@@ -15,28 +15,39 @@ const HeroSection = () => {
     navigate("/browse");
   }
   return (
-    <div className="text-center">
-      <div className="flex flex-col gap-5 my-10">
-        <span className="mx-auto px-4 py-2 rounded-full bg-gray-100 text-[#F83002] font-medium">
-          No.1 Job Hunt Website
+    <div className="text-center bg-teal-700 text-white py-12">
+      <div className="flex flex-col gap-6  mx-auto max-w-4xl">
+        {/* Tagline */}
+        <span className="mx-auto px-4 py-2 rounded-full bg-teal-500 text-white font-bold text-lg shadow-md">
+          Your Gateway to Endless Opportunities
         </span>
 
-        <h1 className=" text-5xl font-bold">
-          Search, Apply & <br/> Get Your <span className=" text-[#6A38C2]"> Dream Job </span>
+        {/* Hero Title */}
+        <h1 className="text-4xl md:text-5xl font-extrabold">
+          Discover, Collaborate & <br />
+          Land Your <span className="text-yellow-400">Dream Job</span>
         </h1>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus
-          minima iusto accusantium tenetur debitis?
+
+        {/* Subtext */}
+        <p className="text-gray-200 text-lg md:text-xl">
+          Elev8Jobs connects talented individuals with top recruiters. 
+          Start your journey towards an amazing career today!
         </p>
 
-        <div className="flex w-[40%] shadow-lg border border-gray-200 pl-3 rounded-full items-center gap-4 mx-auto" >
-            <input type="text" placeholder="Find Your Dream Jobs" 
-              onChange={(e) => setQuery(e.target.value)}
-              className=" outline-none border-none w-full"/>
-
-            <Button onClick= {searchJobHandler} className=" rounded-r-full bg-[#6A38C2]">
-            <Search className=" h-5 w-5 text-white"></Search>
-        </Button>
+        {/* Search Bar */}
+        <div className="flex w-[90%] md:w-[50%] shadow-lg border border-teal-500 rounded-full items-center gap-4 mx-auto bg-white">
+          <input
+            type="text"
+            placeholder="Find Your Dream Job"
+            onChange={(e) => setQuery(e.target.value)}
+            className="w-full px-4 py-2 text-gray-700 rounded-l-full outline-none"
+          />
+          <Button
+            onClick={searchJobHandler}
+            className="rounded-r-full bg-orange-400 hover:bg-orange-500 transition-all duration-300"
+          >
+            <Search className="h-5 w-5 text-white" />
+          </Button>
         </div>
       </div>
     </div>

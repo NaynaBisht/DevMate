@@ -18,7 +18,7 @@ const category = [
   "Data Science",
   "Machine Learning",
   "Software Developer",
-  "Full Stack Developer"
+  "Full Stack Developer",
 ];
 
 const CategoryCarousel = () => {
@@ -30,35 +30,37 @@ const CategoryCarousel = () => {
   };
 
   return (
-    <div className="relative w-1/2 max-w-xl mx-auto my-20">
-      <Carousel>
-        {/* Left Arrow */}
-        <CarouselPrevious className="absolute left-[-40px] top-1/2 transform -translate-y-1/2">
-          <ArrowLeftCircleIcon size={32} className="cursor-pointer" />
-        </CarouselPrevious>
+    <div className="bg-teal-700">
+      <div className="relative w-1/2 max-w-xl mx-auto py-6">
+        <Carousel>
+          {/* Left Arrow */}
+          <CarouselPrevious className="absolute left-[-40px] top-1/2 transform -translate-y-1/2 text-white hover:bg-orange-400 hover:border-orange-500 transition-all duration-300 ">
+            <ArrowLeftCircleIcon size={32} className="cursor-pointer" />
+          </CarouselPrevious>
 
-        <CarouselContent>
-          {category.map((cat, index) => (
-            <CarouselItem
-              key={index}
-              className="md:basis-1/2 lg-basis-1/3 text-center"
-            >
-              <Button
-                variant="outline"
-                onClick={() => searchJobHandler(cat)}
-                className="rounded-full"
+          <CarouselContent>
+            {category.map((cat, index) => (
+              <CarouselItem
+                key={index}
+                className="md:basis-1/2 lg-basis-1/3 text-white text-center"
               >
-                {cat}
-              </Button>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
+                <Button
+                  variant="outline"
+                  onClick={() => searchJobHandler(cat)}
+                  className="rounded-full hover:bg-orange-400 hover:border-orange-500 transition-all duration-300"
+                >
+                  {cat}
+                </Button>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
 
-        {/* Right Arrow */}
-        <CarouselNext className="absolute right-[-40px] top-1/2 transform -translate-y-1/2">
-          <ArrowRightCircleIcon size={32} className="cursor-pointer" />
-        </CarouselNext>
-      </Carousel>
+          {/* Right Arrow */}
+          <CarouselNext className="absolute text-white right-[-40px] top-1/2 transform -translate-y-1/2 hover:bg-orange-400 hover:border-orange-500 transition-all duration-300">
+            <ArrowRightCircleIcon size={32} className="cursor-pointer " />
+          </CarouselNext>
+        </Carousel>
+      </div>
     </div>
   );
 };
