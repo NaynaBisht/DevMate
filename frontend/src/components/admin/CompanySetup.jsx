@@ -7,7 +7,7 @@ import { Input } from "../ui/input";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
-import { COMPANY_API_END_POINT } from "../../utils/constant";
+import { COMPANY_API_END_POINT } from "@/util/constants";
 import { useSelector } from "react-redux";
 import { Loader2 } from "lucide-react";
 import store from "@/redux/store";

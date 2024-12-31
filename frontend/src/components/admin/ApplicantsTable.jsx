@@ -16,7 +16,7 @@ import store from "@/redux/store";
 import { space } from "postcss/lib/list";
 import { toast } from "sonner";
 import axios from "axios";
-import { APPLICATION_API_END_POINT } from "@/utils/constant";
+import { APPLICATION_API_END_POINT } from "@/util/constants";
 import Footer from "../shared/Footer";
 
 const shortlistingStatus = ["Accepted", "Rejected"];

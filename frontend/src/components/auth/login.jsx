@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from "react";
 import axios from "axios";
-import { USER_API_END_POINT } from "../../utils/constant.js";
+import { USER_API_END_POINT } from "../../util/constants";
 import { useNavigate } from "react-router-dom";
 
 import Navbar from "../shared/navbar.jsx";

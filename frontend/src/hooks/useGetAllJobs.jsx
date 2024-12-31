@@ -1,4 +1,4 @@
-import { JOB_API_END_POINT } from '@/utils/constant';
+import { JOB_API_END_POINT } from '@/util/constants';
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

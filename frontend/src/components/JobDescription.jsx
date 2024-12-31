@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setSingleJob } from "@/redux/jobSlice";
 import axios from "axios";
 import { useEffect } from "react";
-import { APPLICATION_API_END_POINT, JOB_API_END_POINT } from "@/utils/constant";
+import { APPLICATION_API_END_POINT, JOB_API_END_POINT } from "@/util/constants";
 import { toast } from "sonner";
 import Navbar from "../components/shared/navbar";
 

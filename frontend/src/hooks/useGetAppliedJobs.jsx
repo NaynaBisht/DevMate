@@ -1,5 +1,5 @@
 import axios from "axios";
-import { APPLICATION_API_END_POINT } from "@/utils/constant";   
+import { APPLICATION_API_END_POINT } from "@/util/constants";   
 import { toast } from "sonner";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
