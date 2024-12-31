@@ -16,9 +16,6 @@ import { toast } from "sonner";
 import { USER_API_END_POINT } from "../utils/constant"; 
 import { setUser } from "../redux/authSlice";
 
-
-
-
 const UpdateProfileDialogue = ({ open, setOpen }) => {
   const [loading, setLoading] = useState(false);
   const { user } = useSelector((store) => store.auth);
@@ -77,6 +74,10 @@ const UpdateProfileDialogue = ({ open, setOpen }) => {
 
   const fileChangeHandler = (e) => {
     const file = e.target.files?.[0];
+    if (file && file.type !== 'application/pdf') {
+      toast.error("Please upload a PDF file.");
+      return;
+    }
     setInput({ ...input, file });
   };
 
@@ -99,7 +100,7 @@ const UpdateProfileDialogue = ({ open, setOpen }) => {
                 <input
                   type="text"
                   id="name"
-                  name="name"
+                  name="fullname"
                   value={input.fullname}
                   onChange={changeEventHandler}
                   placeholder="Name"
@@ -186,7 +187,7 @@ const UpdateProfileDialogue = ({ open, setOpen }) => {
               ) : (
                 <Button
                   type="submit"
-                  className="w-full bg-[#6A38C2] my-4 text-white"
+                  className="w-full bg-orange-500 hover:bg-orange-600 text-white"
                 >
                   Update
                 </Button>

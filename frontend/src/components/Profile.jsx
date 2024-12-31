@@ -11,6 +11,7 @@ import { useState } from "react";
 import UpdateProfileDialog from "./UpdateProfileDialog";
 import { useSelector } from "react-redux";
 import useGetAppliedJobs from "@/hooks/useGetAppliedJobs";
+import Footer from "./shared/Footer";
 
 // const skills = ["HTML", "CSS", "JavaScript", "ReactJS"];
 // console.log(skills); // This will log the array to the console
@@ -42,30 +43,30 @@ const Profile = () => {
 
           <Button
             variant="outline"
-            className="text-right"
+            className="text-right border-teal-700 border-2"
             onClick={() => setOpen(true)}
           >
-            <Pen />
+            <Pen className="text-teal-700" />
           </Button>
         </div>
 
         <div className="my-5">
           <div className="flex items-center gap-3 my-2">
-            <Mail />
+            <Mail className="text-teal-700" />
             <span>{user?.email}</span>
           </div>
           <div className="flex items-center gap-3 my-2 ">
-            <Contact />
+            <Contact className="text-teal-700"/>
             <span>{user?.phoneNumber}</span>
           </div>
         </div>
 
         <div className="my-5">
-          <h1>Skills</h1>
+          <h1 className="font-medium">Skills</h1>
           <div className="flex items-center gap-2 my-2">
             {user?.profile?.skills.length !== 0 ? (
               user?.profile?.skills.map((item, index) => (
-                <Badge className="bg-black text-white" key={index}>
+                <Badge className="bg-orange-100 text-orange-800" key={index}>
                   {item}
                 </Badge>
               ))
@@ -89,11 +90,12 @@ const Profile = () => {
           )}
         </div>
       </div>
-      <div className="max-w-3xl mx-auto bg-white rounded-2xl">
-        <h1 className="font-bold text-lg my-5">Applied Jobs</h1>
+      <div className="max-w-3xl mx-auto bg-white rounded-2xl mb-12">
+        <h1 className="font-bold text-2xl my-8">Applied Jobs</h1>
         <AppliedJobsTable />
       </div>
       <UpdateProfileDialog open={open} setOpen={setOpen} />
+      <Footer />
     </div>
   );
 };
