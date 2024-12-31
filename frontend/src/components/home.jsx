@@ -9,9 +9,7 @@ import { useSelector } from 'react-redux'
 import store from '@/redux/store.js'
 import { useNavigate } from 'react-router-dom'
 
-
-
-function Home() {
+const Home = () => {
   useGetAllJobs();
   const {user} = useSelector(store => store.auth);
   const navigate = useNavigate();
@@ -20,7 +18,6 @@ function Home() {
       navigate("/admin/companies")
     } 
   }, [])
-
   return (
     <div>
       <Navbar/>
@@ -29,7 +26,7 @@ function Home() {
       <LatestJobs/>
       <Footer/>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;
