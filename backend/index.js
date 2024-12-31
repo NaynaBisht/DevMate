@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 const corsOptions = {
-    origin:'FRONTEND_URL', 
+    origin:'https://elev8jobs.onrender.com', 
     credentials:true
 }
 
