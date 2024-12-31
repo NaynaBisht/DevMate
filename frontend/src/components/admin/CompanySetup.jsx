@@ -12,14 +12,13 @@ import { useSelector } from "react-redux";
 import { Loader2 } from "lucide-react";
 import store from "@/redux/store";
 import useGetCompanyById from "@/hooks/useGetCompanyById";
-
-
+import Footer from "../shared/Footer";
 
 const CompanySetup = () => {
   const params = useParams();
   useGetCompanyById(params.id);
-  
-  const {singleCompany} = useSelector((store)=> store.company);
+
+  const { singleCompany } = useSelector((store) => store.company);
 
   const [loading, setLoading] = useState(false);
 
@@ -31,8 +30,6 @@ const CompanySetup = () => {
     location: "",
     file: null,
   });
-
-  
 
   const changeEventHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -79,89 +76,98 @@ const CompanySetup = () => {
   useEffect(() => {
     setInput({
       name: singleCompany.name || "",
-      description:  singleCompany.description || "",
+      description: singleCompany.description || "",
       website: singleCompany.website || "",
-      location:  singleCompany.location || "",
-      file: singleCompany.file || null
+      location: singleCompany.location || "",
+      file: singleCompany.file || null,
     });
   }, [singleCompany]);
   return (
     <div>
       <Navbar />
-      <div className="max-w-xl mx-auto my-10 ">
-        <form onSubmit={submitHandler}>
-          <div className=" flex items-center gap-5 p-8">
-            <Button
-              onClick={() => navigate("/admin/companies")}
-              className="flex items-center gap-2 text-gray-500 font-semibold"
-              variant="outline"
-            >
-              <ArrowLeft />
-              <span>Back</span>
-            </Button>
-            <h1 className="font-bold text-xl">Company Setup</h1>
+      <div className="flex items-center justify-center max-w-5xl mx-auto">
+        <form
+          onSubmit={submitHandler}
+          className="w-1/2 border border-teal-400 rounded-lg shadow-lg p-6 my-10 bg-teal-50"
+        >
+          <h1 className="font-bold text-2xl mb-5 text-orange-600 text-center">
+            Company Setup
+          </h1>
+
+          <div className="my-4">
+            <Label>Company Name</Label>
+            <Input
+              type="text"
+              name="name"
+              value={input.name}
+              onChange={changeEventHandler}
+              placeholder="Enter company name"
+              className="border-teal-400"
+            />
           </div>
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <Label>Company Name</Label>
-              <Input
-                type="text"
-                name="name"
-                value={input.name}
-                onChange={changeEventHandler}
-              />
-            </div>
 
-            <div>
-              <Label>Description</Label>
-              <Input
-                type="text"
-                name="description"
-                value={input.description}
-                onChange={changeEventHandler}
-              />
-            </div>
-
-            <div>
-              <Label>Website</Label>
-              <Input
-                type="text"
-                name="website"
-                value={input.website}
-                onChange={changeEventHandler}
-              />
-            </div>
-
-            <div>
-              <Label>Location</Label>
-              <Input
-                type="text"
-                name="location"
-                value={input.location}
-                onChange={changeEventHandler}
-              />
-            </div>
-
-            <div>
-              <Label>Logo</Label>
-              <Input
-                type="file"
-                accept="image/*"
-                onChange={changeFileHandler}
-              />
-            </div>
+          <div className="my-4">
+            <Label>Description</Label>
+            <Input
+              type="text"
+              name="description"
+              value={input.description}
+              onChange={changeEventHandler}
+              placeholder="Enter company description"
+              className="border-teal-400"
+            />
           </div>
+
+          <div className="my-4">
+            <Label>Website</Label>
+            <Input
+              type="text"
+              name="website"
+              value={input.website}
+              onChange={changeEventHandler}
+              placeholder="Enter company website"
+              className="border-teal-400"
+            />
+          </div>
+
+          <div className="my-4">
+            <Label>Location</Label>
+            <Input
+              type="text"
+              name="location"
+              value={input.location}
+              onChange={changeEventHandler}
+              placeholder="Enter company location"
+              className="border-teal-400"
+            />
+          </div>
+
+          <div className="my-4">
+            <Label>Logo</Label>
+            <Input
+              accept="image/*"
+              type="file"
+              name="file"
+              onChange={changeFileHandler}
+              className="cursor-pointer border-teal-400"
+            />
+          </div>
+
           {loading ? (
-            <Button className="w-full my-4">
-              <Loader2 className=" mr-2 h-4 w-4 animate-spin " /> Please Wait...
+            <Button className="w-full my-4 bg-teal-500 text-white">
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Updating...
             </Button>
           ) : (
-            <Button type="submit" className="w-full bg-black my-4 text-white">
+            <Button
+              type="submit"
+              className="w-full my-4 bg-orange-500 hover:bg-orange-600 text-white"
+            >
               Update
             </Button>
           )}
         </form>
       </div>
+      <Footer />
     </div>
   );
 };

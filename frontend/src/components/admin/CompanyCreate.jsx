@@ -38,33 +38,48 @@ const CompanyCreate = () => {
   }
   return (
     <div>
-      <Navbar />
-      <div className="max-w-3xl mx-auto">
-        <div className="my-10">
-          <h1 className="font-bold text-wxl">Your Company Name</h1>
-          <p>What would you like to give your company name?</p>
-        </div>
+  <Navbar />
+  <div className="max-w-3xl mx-auto px-4">
+    {/* Header Section */}
+    <div className="my-10 text-center">
+      <h1 className="font-bold text-2xl text-orange-600">Your Company Name</h1>
+      <p className="text-gray-600">
+        What would you like to give your company name?
+      </p>
+    </div>
 
-        <Label>Company Name</Label>
-        <Input
-          placeholder="Enter your company name"
-          type="text"
-          className="my-2"
-          onChange={(e)=> setCompanyName(e.target.value) }
-        />
-        <div className="flex items-center gap-2 my-10">
-          <Button
-            variant="outline"
-            onClick={() => navigate("/admin/companies")}
-          >
-            Cancel
-          </Button>
-          <Button className="bg-black text-white" 
-            onClick={registerNewCompany}
-          >Continue</Button>
-        </div>
+    {/* Form Section */}
+    <div className="bg-white shadow-lg rounded-lg p-6">
+      <Label className="text-lg font-semibold text-gray-700">
+        Company Name
+      </Label>
+      <Input
+        placeholder="Enter your company name"
+        type="text"
+        className="my-2 border border-gray-300 rounded-md p-3 focus:ring-teal-500 focus:outline-none w-full"
+        onChange={(e) => setCompanyName(e.target.value)}
+      />
+
+      {/* Actions */}
+      <div className="flex items-center gap-4 mt-6">
+        <Button
+          variant="outline"
+          className="border border-gray-300 text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-md"
+          onClick={() => navigate("/admin/companies")}
+        >
+          Cancel
+        </Button>
+        <Button
+          className="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-700 active:bg-teal-800"
+          onClick={registerNewCompany}
+        >
+          Continue
+        </Button>
       </div>
     </div>
+  </div>
+</div>
+
   );
 };
 
