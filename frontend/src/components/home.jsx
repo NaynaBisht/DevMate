@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom'
 
 
 
-function home() {
+function Home() {
   useGetAllJobs();
   const {user} = useSelector(store => store.auth);
   const navigate = useNavigate();
@@ -32,4 +32,4 @@ function home() {
   )
 }
 
-export default home
+export default Home
