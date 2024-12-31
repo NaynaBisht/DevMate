@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./shared/Navbar";
+import Navbar from "./shared/navbar";
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import image from "../assets/images/circle-line-simple-design-logo-600nw-2174926871.webp";
 import { Button } from "./ui/button";
